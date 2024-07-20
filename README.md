@@ -82,6 +82,6 @@ const myArgs = [myArg1, myArg2, myArg3] satisfies DoTheFooArgs;
 
 ---
 
-MIT license, do whatever you want with it. Contributes welcome.
+MIT license, do whatever you want with it. Contributions welcome.
 
 Like it? Love it? Donate a few dollars to your local humane society for the fluffies 🐶🐱
