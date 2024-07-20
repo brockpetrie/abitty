@@ -4,7 +4,7 @@
     "description": "Abitty cherry-picks specific functions from your Solidity ABIs and saves them for individual importing. Stop using thicc JSON files, start shaking that tree.",
     "main": "dist/index.js",
     "bin": {
-        "abitty": "./dist/index.js"
+        "abitty": "dist/index.js"
     },
     "scripts": {
         "build": "tsc",
@@ -15,7 +15,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/brockpetrie/abitty.git"
+        "url": "git+https://github.com/brockpetrie/abitty.git"
     },
     "keywords": [
         "solidity",
