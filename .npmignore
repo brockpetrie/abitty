@@ -6,3 +6,9 @@ dist
 coverage/
 src/index.spec.ts
 src/types/
+jest.config.js
+tsconfig.json
+.prettierrc
+.prettierignore
+.husky
+.husky/*
