@@ -1,0 +1,53 @@
+{
+    "name": "abitty",
+    "version": "0.1.0",
+    "description": "Abitty cherry-picks specific functions from your Solidity ABIs and saves them for individual importing. Stop using thicc JSON files, start shaking that tree.",
+    "main": "dist/index.js",
+    "bin": {
+        "abitty": "./dist/index.js"
+    },
+    "scripts": {
+        "build": "tsc",
+        "start": "node dist/index.js",
+        "prettier": "prettier --write .",
+        "prepare": "husky install",
+        "test": "jest"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/brockpetrie/abitty.git"
+    },
+    "keywords": [
+        "solidity",
+        "abi",
+        "typescript",
+        "json",
+        "parser"
+    ],
+    "author": "Brock Petrie",
+    "license": "MIT",
+    "dependencies": {
+        "fs-extra": "^11.0.0",
+        "yargs": "^17.7.2"
+    },
+    "devDependencies": {
+        "@types/fs-extra": "^11.0.4",
+        "@types/jest": "^29.5.12",
+        "@types/node": "^20.0.0",
+        "@types/yargs": "^17.0.32",
+        "husky": "^9.0.0",
+        "jest": "^29.7.0",
+        "lint-staged": "^15.0.0",
+        "prettier": "^3.3.3",
+        "ts-jest": "^29.2.3",
+        "typescript": "^5.0.0"
+    },
+    "lint-staged": {
+        "*.ts": "prettier --write"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    }
+}
