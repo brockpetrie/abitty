@@ -31,6 +31,11 @@ const parseJsonFile = async (filePath: string, picks: string[]) => {
 };
 
 const solidityTypeToTsType = (solidityType: string): string => {
+    const arrayMatch = solidityType.match(/(.+)\[\]$/);
+    if (arrayMatch) {
+        return `${solidityTypeToTsType(arrayMatch[1])}[]`;
+    }
+
     switch (solidityType) {
         case 'uint256':
         case 'uint':
