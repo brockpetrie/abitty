@@ -31,23 +31,16 @@ const parseJsonFile = async (filePath: string, picks: string[]) => {
 };
 
 const solidityTypeToTsType = (solidityType: string): string => {
-    const arrayMatch = solidityType.match(/(.+)\[\]$/);
-    if (arrayMatch) {
-        return `${solidityTypeToTsType(arrayMatch[1])}[]`;
+    if (solidityType.endsWith('[]')) {
+        const arrayType = solidityType.slice(0, -2);
+        return `${solidityTypeToTsType(arrayType)}[]`;
+    }
+
+    if (/^u?int(\d+)?$/.test(solidityType)) {
+        return 'number';
     }
 
     switch (solidityType) {
-        case 'uint256':
-        case 'uint':
-        case 'int256':
-        case 'int':
-        case 'uint8':
-        case 'uint16':
-        case 'uint32':
-        case 'int8':
-        case 'int16':
-        case 'int32':
-            return 'number';
         case 'address':
             return '`0x${string}`';
         case 'bool':
@@ -109,17 +102,17 @@ const saveAbisToFiles = async (abis: any[], outputDir: string, contractName?: st
 
         for (const abi of abis) {
             const filePath = path.join(dir, `${abi.name}.ts`);
-            const fileContent = `export const ${abi.name}Abi = ${JSON.stringify(abi, null, 2)} as const;\n`;
+            const fileContent = `export const ${abi.name}Abi = ${JSON.stringify(abi, null, 2)};\n`;
             const typeDefinitions = generateTypeDefinitions(abi, contractName || '');
             const fullContent = fileContent + (typeDefinitions ? `\n${typeDefinitions}\n` : '');
 
-            await fs.writeFile(filePath, fullContent, 'utf8');
+            await fs.writeFile(filePath, fullContent, { encoding: 'utf8', flag: 'w' });
             indexContent.push(`export * from './${abi.name}';`);
         }
 
         if (organize && contractName) {
             const indexFilePath = path.join(dir, `index.ts`);
-            await fs.writeFile(indexFilePath, indexContent.join('\n'), 'utf8');
+            await fs.writeFile(indexFilePath, indexContent.join('\n'), { encoding: 'utf8', flag: 'w' });
         }
     } catch (error) {
         console.error('Error saving ABIs to files:', error);

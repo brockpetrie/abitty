@@ -1,6 +1,6 @@
 {
     "name": "abitty",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Abitty cherry-picks specific functions from your Solidity ABIs and saves them for individual importing. Stop using thicc JSON files, start shaking that tree.",
     "main": "dist/index.js",
     "bin": {
